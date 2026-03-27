@@ -112,5 +112,11 @@ src/
 ### Daftar Produk
 ![Products](docs/products.png)
 
-### Tambah/Edit Produk
+### Tambah Produk
 ![Form](docs/form.png)
+
+### Edit Produk
+![Edit](docs/edit.png)
+
+### Hapus Produk
+![Delete](docs/delete.png)

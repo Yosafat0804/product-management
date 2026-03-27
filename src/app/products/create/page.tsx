@@ -22,7 +22,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ArrowLeft, Loader2, ImagePlus, X, Package } from "lucide-react";
+import { ArrowLeft, Loader2, ImagePlus, X, Package, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { toast } from "sonner";
@@ -100,28 +100,33 @@ export default function CreateProductPage() {
         {/* Back button */}
         <Link
           href="/products"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-indigo-400 transition-colors duration-300 animate-fade-in"
         >
           <ArrowLeft className="h-4 w-4" />
           Kembali ke Daftar Produk
         </Link>
 
-        <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Package className="h-5 w-5 text-indigo-400" />
-              Tambah Produk Baru
+        <Card className="border-border/20 bg-card/50 backdrop-blur-sm shadow-xl shadow-indigo-500/3 animate-slide-up overflow-hidden">
+          {/* Decorative top bar */}
+          <div className="h-1 bg-gradient-to-r from-indigo-500 via-violet-500 to-purple-500" />
+
+          <CardHeader className="pb-2">
+            <CardTitle className="flex items-center gap-3">
+              <div className="rounded-xl bg-gradient-to-br from-indigo-500/10 to-violet-500/10 p-2.5 border border-indigo-500/20">
+                <Sparkles className="h-5 w-5 text-indigo-400" />
+              </div>
+              <span className="gradient-text">Tambah Produk Baru</span>
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="ml-[52px]">
               Isi form di bawah untuk menambahkan produk baru
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pt-4">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Title */}
-              <div className="space-y-2">
+              <div className="space-y-2 animate-slide-up stagger-1">
                 <Label htmlFor="title">
-                  Nama Produk <span className="text-destructive">*</span>
+                  Nama Produk <span className="text-red-400">*</span>
                 </Label>
                 <Input
                   id="title"
@@ -130,19 +135,19 @@ export default function CreateProductPage() {
                   onChange={(e) =>
                     setForm({ ...form, title: e.target.value })
                   }
-                  className={`bg-background/50 border-border/50 ${
+                  className={`h-11 bg-background/50 border-border/30 focus:border-indigo-500 focus:ring-indigo-500/20 rounded-xl transition-all duration-300 ${
                     errors.title ? "border-destructive" : ""
                   }`}
                 />
                 {errors.title && (
-                  <p className="text-xs text-destructive">{errors.title}</p>
+                  <p className="text-xs text-destructive animate-fade-in">{errors.title}</p>
                 )}
               </div>
 
               {/* Description */}
-              <div className="space-y-2">
+              <div className="space-y-2 animate-slide-up stagger-2">
                 <Label htmlFor="description">
-                  Deskripsi <span className="text-destructive">*</span>
+                  Deskripsi <span className="text-red-400">*</span>
                 </Label>
                 <Textarea
                   id="description"
@@ -151,22 +156,22 @@ export default function CreateProductPage() {
                   onChange={(e) =>
                     setForm({ ...form, description: e.target.value })
                   }
-                  className={`min-h-[100px] bg-background/50 border-border/50 ${
+                  className={`min-h-[120px] bg-background/50 border-border/30 focus:border-indigo-500 focus:ring-indigo-500/20 rounded-xl transition-all duration-300 ${
                     errors.description ? "border-destructive" : ""
                   }`}
                 />
                 {errors.description && (
-                  <p className="text-xs text-destructive">
+                  <p className="text-xs text-destructive animate-fade-in">
                     {errors.description}
                   </p>
                 )}
               </div>
 
               {/* Price and Stock */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4 animate-slide-up stagger-3">
                 <div className="space-y-2">
                   <Label htmlFor="price">
-                    Harga ($) <span className="text-destructive">*</span>
+                    Harga (Rp) <span className="text-red-400">*</span>
                   </Label>
                   <Input
                     id="price"
@@ -178,12 +183,12 @@ export default function CreateProductPage() {
                     onChange={(e) =>
                       setForm({ ...form, price: e.target.value })
                     }
-                    className={`bg-background/50 border-border/50 ${
+                    className={`h-11 bg-background/50 border-border/30 focus:border-indigo-500 focus:ring-indigo-500/20 rounded-xl transition-all duration-300 ${
                       errors.price ? "border-destructive" : ""
                     }`}
                   />
                   {errors.price && (
-                    <p className="text-xs text-destructive">{errors.price}</p>
+                    <p className="text-xs text-destructive animate-fade-in">{errors.price}</p>
                   )}
                 </div>
                 <div className="space-y-2">
@@ -197,13 +202,13 @@ export default function CreateProductPage() {
                     onChange={(e) =>
                       setForm({ ...form, stock: e.target.value })
                     }
-                    className="bg-background/50 border-border/50"
+                    className="h-11 bg-background/50 border-border/30 focus:border-indigo-500 focus:ring-indigo-500/20 rounded-xl transition-all duration-300"
                   />
                 </div>
               </div>
 
               {/* Category and Brand */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4 animate-slide-up stagger-4">
                 <div className="space-y-2">
                   <Label>Kategori</Label>
                   <Select
@@ -212,7 +217,7 @@ export default function CreateProductPage() {
                       setForm({ ...form, category: v ?? "" })
                     }
                   >
-                    <SelectTrigger className="bg-background/50 border-border/50">
+                    <SelectTrigger className="h-11 bg-background/50 border-border/30 rounded-xl">
                       <SelectValue placeholder="Pilih kategori" />
                     </SelectTrigger>
                     <SelectContent>
@@ -231,46 +236,48 @@ export default function CreateProductPage() {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="brand">Brand</Label>
+                  <Label htmlFor="brand">Merek</Label>
                   <Input
                     id="brand"
-                    placeholder="Nama brand"
+                    placeholder="Nama merek"
                     value={form.brand}
                     onChange={(e) =>
                       setForm({ ...form, brand: e.target.value })
                     }
-                    className="bg-background/50 border-border/50"
+                    className="h-11 bg-background/50 border-border/30 focus:border-indigo-500 focus:ring-indigo-500/20 rounded-xl transition-all duration-300"
                   />
                 </div>
               </div>
 
               {/* Image Upload */}
-              <div className="space-y-2">
+              <div className="space-y-2 animate-slide-up stagger-5">
                 <Label>Gambar Produk (Opsional)</Label>
                 <div className="flex items-start gap-4">
                   {imagePreview ? (
-                    <div className="relative h-32 w-32 rounded-lg overflow-hidden border border-border/50">
+                    <div className="relative h-36 w-36 rounded-2xl overflow-hidden border border-border/30 ring-2 ring-indigo-500/20 shadow-lg group">
                       <Image
                         src={imagePreview!}
-                        alt="Preview"
+                        alt="Pratinjau"
                         fill
                         className="object-cover"
                       />
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="icon"
-                        className="absolute top-1 right-1 h-6 w-6 bg-black/60 hover:bg-black/80 text-white rounded-full"
-                        onClick={() => setImagePreview(null)}
-                      >
-                        <X className="h-3 w-3" />
-                      </Button>
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8 bg-white/20 hover:bg-white/30 text-white rounded-full backdrop-blur-sm"
+                          onClick={() => setImagePreview(null)}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   ) : (
-                    <label className="flex flex-col items-center justify-center h-32 w-32 rounded-lg border-2 border-dashed border-border/50 bg-muted/30 cursor-pointer hover:bg-muted/50 transition-colors">
-                      <ImagePlus className="h-8 w-8 text-muted-foreground/50" />
-                      <span className="text-xs text-muted-foreground mt-1">
-                        Upload
+                    <label className="flex flex-col items-center justify-center h-36 w-36 rounded-2xl border-2 border-dashed border-border/30 bg-indigo-500/5 cursor-pointer hover:bg-indigo-500/10 hover:border-indigo-500/30 transition-all duration-300 group">
+                      <ImagePlus className="h-8 w-8 text-muted-foreground/40 group-hover:text-indigo-400 transition-colors duration-300" />
+                      <span className="text-xs text-muted-foreground mt-1.5 group-hover:text-indigo-300 transition-colors duration-300">
+                        Unggah
                       </span>
                       <input
                         type="file"
@@ -284,11 +291,11 @@ export default function CreateProductPage() {
               </div>
 
               {/* Submit */}
-              <div className="flex gap-3 pt-4">
+              <div className="flex gap-3 pt-4 animate-slide-up stagger-6">
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white shadow-lg shadow-indigo-500/25"
+                  className="bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 hover:from-indigo-500 hover:via-violet-500 hover:to-purple-500 text-white shadow-xl shadow-indigo-500/20 transition-all duration-300 hover:shadow-indigo-500/40 hover:scale-105 active:scale-95 rounded-xl h-11 px-6"
                 >
                   {isSubmitting ? (
                     <>
@@ -300,7 +307,7 @@ export default function CreateProductPage() {
                   )}
                 </Button>
                 <Link href="/products">
-                  <Button type="button" variant="outline" className="border-border/50">
+                  <Button type="button" variant="outline" className="border-border/30 rounded-xl h-11 hover:bg-card/80 transition-all duration-300">
                     Batal
                   </Button>
                 </Link>

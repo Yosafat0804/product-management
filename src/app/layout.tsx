@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Product Management System",
+  title: "Sistem Manajemen Produk",
   description: "Aplikasi Manajemen Produk - Kelola produk Anda dengan mudah",
   manifest: "/manifest.json",
   themeColor: "#0f172a",

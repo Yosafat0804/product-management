@@ -1,6 +1,6 @@
 {
-  "name": "Product Management System",
-  "short_name": "ProdMgmt",
+  "name": "Sistem Manajemen Produk",
+  "short_name": "ManajemenProduk",
   "description": "Aplikasi Manajemen Produk - Kelola produk Anda dengan mudah",
   "start_url": "/",
   "display": "standalone",
